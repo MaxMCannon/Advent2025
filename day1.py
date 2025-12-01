@@ -2,6 +2,7 @@ import math
 input = open("day1in.txt").read().splitlines()
 
 pos = 50
+pw = 0
 p2pw = 0
 
 def countup(num):
@@ -11,7 +12,10 @@ def countup(num):
         pos += 1
         num -= 1
         if pos > 99:
+            p2pw += 1
             pos = 0
+        # elif pos == 0:
+        #     p2pw += 1
         # print(pos)
 
 def countdown(num):
@@ -22,12 +26,11 @@ def countdown(num):
         pos -= 1
         num -= 1
         if pos < 0:
+            # p2pw += 1
             pos = 99
+        elif pos == 0:
+            p2pw += 1
         # print(pos)
-
-pw = 0
-
-# countdown(int(input[0][1:]))
 
 for i in range(len(input)):
     print(input[i])
@@ -37,7 +40,7 @@ for i in range(len(input)):
         countdown(int(input[i][1:]))
     if pos == 0:
         pw += 1
-    print(pos)
+    # print(pos)
 
-print(pw)
-print("Part 2:" + str(p2pw))
+print("Part 1: " + str(pw))
+print("Part 2: " + str(p2pw))
