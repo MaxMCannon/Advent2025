@@ -29,44 +29,46 @@ for l in input:
 print("Part 1: " + str(globalsum))
 
 #Start Part 2
-
-def getarrlen(arr):
-    out = 0
-    for el in arr:
-        out += len(el)
-    return out
+matchs = []
 
 def checknum(num):
     # print(num)
+    global matchs
     for l in range(1, int(len(str(num))/2)+1):
         arr = [str(num)[:l]]
-        print(arr)
+        # print(l)
+        # print(arr)
         for i in range(l, len(str(num))+1, l):
             piece = str(num)[i:i+l]
-            # if piece == arr[-1]:
-            #     print(arr)
-            #     print("fail")
-            #     break
+            if piece != arr[-1]:
+                break
             arr.append(piece)
+            # print(arr)
+        if l * len(arr) == len(str(num)) and len(arr) >= 2:
+            matchs.append(num)
             print(arr)
-        if getarrlen(arr) == len(str(num)):
-            return num
-            print("got one")
-        else:
-            return 0
-    return 0
+        # if getarrlen(arr) == len(str(num)):
+        #     return num
+            # print("got one")
+        # else:
+        #     return 0
+
+# checknum(21212121)
+
+print(set(matchs))
 
 p2sum = 0
 
 for l in input:
-    temp = []
     ids = [int(l.split('-')[0]), int(l.split('-')[1])]
-    for i in range(ids[0], ids[1]):
-        print(i)
-        temp.append(checknum(i))
-    for item in temp:
-        p2sum += item
+    for i in range(ids[0], ids[1]+1):
+        checknum(i)
     # print(ids)
+
+print(set(matchs))
+
+for item in set(matchs):
+    p2sum += item
 
 print(p2sum)
 
