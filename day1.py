@@ -33,7 +33,7 @@ def countdown(num):
         # print(pos)
 
 for i in range(len(input)):
-    print(input[i])
+    # print(input[i])
     if input[i][0] == "R":
         countup(int(input[i][1:]))
     elif input[i][0] == "L":
